@@ -4,7 +4,13 @@ import { withRouter } from 'react-router-dom'
 const ListItem = withRouter(({ history, item, index }) => ( // eslint-disable-line
   <div // eslint-disable-line
     className="card mb-3"
-    onClick={() => history.push(`/detail/${index}`)}
+    onClick={() => {
+      if (history.location.pathname.includes(`/detail/${index}`)) {
+        history.push('/')
+      } else {
+        history.push(`/detail/${index}`)
+      }
+    }}
     style={{ cursor: 'pointer' }}
   >
     <div className="card-block">
