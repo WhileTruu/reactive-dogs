@@ -3,13 +3,11 @@ import { Route, withRouter } from 'react-router-dom'
 
 import New from './new'
 import List from './list'
-import Detail from './detail'
 import './Container.css'
-
 
 function toggleNewItem(history) {
   const { pathname } = history.location
-  if (pathname === '/') {
+  if (pathname === '/' || pathname.includes('detail')) {
     history.push('/new')
   } else {
     history.push('/')
@@ -43,7 +41,10 @@ class Container extends Component {
 
     const newWithRouter = withRouter(({ history }) => (
       <div>
-        <New addItem={this.addItem} pushHistory={history.push} />
+        <New
+          addItem={this.addItem}
+          pushHistory={history.push}
+        />
       </div>
     ))
 
@@ -55,7 +56,6 @@ class Container extends Component {
           </div>
           <Route path="/new" component={newWithRouter} />
           <List listItems={this.state.listItems} />
-          <Route path="/detail" component={Detail} />
         </div>
       </div>
     )

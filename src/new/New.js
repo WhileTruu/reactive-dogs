@@ -71,7 +71,10 @@ class New extends Component {
   }
 
   addItem() {
-    if (this.isValid()) this.props.addItem(this.state.name, this.state.email)
+    if (this.isValid()) {
+      this.props.addItem(this.state.name, this.state.email)
+      this.props.pushHistory('/')
+    }
   }
 
   render() {
